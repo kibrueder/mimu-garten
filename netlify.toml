@@ -1,0 +1,13 @@
+[build]
+  publish = "."
+  command = "python3 build.py"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Keep /configurator on Hostinger. If DNS points only here, set up a reverse
+# proxy or subdomain (e.g. configurator.mimugarten.nl) and update CTAs.

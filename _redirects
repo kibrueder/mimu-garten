@@ -1,0 +1,9 @@
+# Clean URL helpers
+/uberdachung              /uberdachung/              301
+/wintergarten             /wintergarten/             301
+/contact                  /contact/                  301
+/nl                       /nl/                       301
+
+# Configurator stays on Hostinger (external). If this site is deployed on the
+# same Hostinger account beside /configurator/, remove the next line.
+# /configurator/*  https://mimugarten.nl/configurator/:splat  200!

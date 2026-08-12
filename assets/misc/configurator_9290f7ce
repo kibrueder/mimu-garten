@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MimuGarten Configurator - Gestalte deine perfekte Terrassenüberdachung</title>
+    <meta name="description"
+        content="Konfiguriere deine perfekte Terrassenüberdachung Schritt für Schritt. MimuGarten übernimmt Entwurf, Montage und Service komplett in eigener Regie.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="./assets/images/favicon.png">
+
+    <!-- Fonts (matching mimugarten.nl) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Hanken+Grotesk:wght@500;600&family=Roboto+Serif:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Detect huidige taal en signal aan CookieYes (banner-taal volgt <html lang> + window.ckySettings.documentLang) -->
+    <script>
+        (function () {
+            var SUPPORTED = ['nl', 'de'], DEFAULT = 'de', KEY = 'mimu_lang';
+            var lang = null;
+            var urlLang = new URLSearchParams(window.location.search).get('lang');
+            if (urlLang && SUPPORTED.indexOf(urlLang.toLowerCase()) !== -1) lang = urlLang.toLowerCase();
+            if (!lang) {
+                try {
+                    var saved = localStorage.getItem(KEY);
+                    if (saved && SUPPORTED.indexOf(saved) !== -1) lang = saved;
+                } catch (e) { }
+            }
+            if (!lang && document.referrer) {
+                try {
+                    var u = new URL(document.referrer);
+                    if (u.hostname.toLowerCase().indexOf('mimugarten.nl') !== -1) {
+                        var p = u.pathname.toLowerCase();
+                        lang = (p.indexOf('/nl/') === 0 || p === '/nl') ? 'nl' : 'de';
+                    }
+                } catch (e) { }
+            }
+            if (!lang) {
+                var nav = (navigator.language || '').toLowerCase();
+                if (nav.indexOf('nl') === 0) lang = 'nl';
+                else if (nav.indexOf('de') === 0) lang = 'de';
+            }
+            lang = lang || DEFAULT;
+            document.documentElement.lang = lang;
+            // Override voor CookieYes auto-translation (werkt alleen als CookieYes-account NL ingeschakeld heeft)
+            window.ckySettings = window.ckySettings || {};
+            window.ckySettings.documentLang = lang;
+        })();
+    </script>
+
+    <!-- Banner-translation overlay: spiegel hoofdsite NL-strings, cache DE-origineel, sync op taalwissel zonder reload -->
+    <script>
+        (function () {
+            var T_NL = {
+                'title': 'Wij hechten waarde aan uw privacy',
+                'description': 'We gebruiken cookies om uw browse-ervaring te verbeteren, gepersonaliseerde advertenties of content weer te geven en ons verkeer te analyseren. Door op „Alles accepteren" te klikken, gaat u akkoord met het gebruik van cookies.',
+                'settings-button': 'Aanpassen',
+                'reject-button': 'Alles weigeren',
+                'accept-button': 'Alles accepteren',
+                'powered-by': 'Aangedreven door'
+            };
+            var T_ORIG = {}; // DE-strings cached bij eerste mount
+            function getText(el, tag) {
+                if (tag === 'powered-by') {
+                    for (var i = 0; i < el.childNodes.length; i++) {
+                        if (el.childNodes[i].nodeType === 3 && el.childNodes[i].textContent.trim()) return el.childNodes[i].textContent;
+                    }
+                    return null;
+                }
+                return el.textContent;
+            }
+            function setText(el, tag, v) {
+                if (tag === 'powered-by') {
+                    for (var i = 0; i < el.childNodes.length; i++) {
+                        if (el.childNodes[i].nodeType === 3 && el.childNodes[i].textContent.trim()) { el.childNodes[i].textContent = v + ' '; return; }
+                    }
+                } else {
+                    el.textContent = v;
+                }
+            }
+            function sync() {
+                var lang = document.documentElement.lang === 'nl' ? 'nl' : 'de';
+                Object.keys(T_NL).forEach(function (tag) {
+                    document.querySelectorAll('[data-cky-tag="' + tag + '"]').forEach(function (el) {
+                        if (!el.dataset.ckyOrigCaptured) {
+                            var cur = getText(el, tag);
+                            if (cur && !T_ORIG[tag]) T_ORIG[tag] = cur;
+                            el.dataset.ckyOrigCaptured = '1';
+                        }
+                        var target = lang === 'nl' ? T_NL[tag] : T_ORIG[tag];
+                        if (!target) return;
+                        var now = (getText(el, tag) || '').trim();
+                        if (now === target.trim()) return;
+                        setText(el, tag, target);
+                    });
+                });
+            }
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', sync);
+            else sync();
+            new MutationObserver(sync).observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['lang'] });
+            // De gebundelde i18n.js update <html lang> niet bij taalwissel; we vangen dat hier op
+            document.addEventListener('languageChanged', function (e) {
+                if (e && e.detail && e.detail.lang) document.documentElement.lang = e.detail.lang;
+                sync();
+            });
+        })();
+    </script>
+
+    <!-- Google Consent Mode v2 defaults (MUST run before gtag.js / CookieYes loads) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'functionality_storage': 'denied',
+            'personalization_storage': 'denied',
+            'security_storage': 'granted',
+            'wait_for_update': 500
+        });
+        gtag('set', 'ads_data_redaction', true);
+        gtag('set', 'url_passthrough', true);
+    </script>
+
+    <!-- CookieYes consent banner (zelfde CMP als mimugarten.nl) -->
+    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/806335fda999c933e5c7de34bfc208fa/script.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18058170287"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'AW-18058170287');
+    </script>
+    <!-- End Google tag (gtag.js) -->
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '2122018355035129');
+        fbq('track', 'PageView');
+    </script>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Custom CSS -->
+  <script type="module" crossorigin src="./assets/js/index-ozuS_ftn.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Cc_jqpHZ.css">
+</head>
+
+<body>
+    <!-- Meta Pixel (noscript) -->
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2122018355035129&ev=PageView&noscript=1" alt="" /></noscript>
+    <!-- End Meta Pixel (noscript) -->
+    <!-- Header — matching mimugarten.nl -->
+    <header class="mg-header">
+        <!-- Top strip (green) -->
+        <div class="mg-header__top">
+            <div class="mg-header__container">
+                <ul class="mg-header__contact">
+                    <li>
+                        <svg viewBox="0 0 352 512" aria-hidden="true"><path fill="currentColor" d="M336 192h-16c-8.84 0-16 7.16-16 16v48c0 74.8-64.49 134.82-140.79 127.38C96.71 376.89 48 317.11 48 250.3V208c0-8.84-7.16-16-16-16H16c-8.84 0-16 7.16-16 16v40.16c0 89.64 63.97 169.55 152 181.69V464H96c-8.84 0-16 7.16-16 16v16c0 8.84 7.16 16 16 16h160c8.84 0 16-7.16 16-16v-16c0-8.84-7.16-16-16-16h-56v-33.77C285.71 418.47 352 344.9 352 256v-48c0-8.84-7.16-16-16-16zM176 352c53.02 0 96-42.98 96-96h-85.33c-5.89 0-10.67-3.58-10.67-8v-16c0-4.42 4.78-8 10.67-8H272v-32h-85.33c-5.89 0-10.67-3.58-10.67-8v-16c0-4.42 4.78-8 10.67-8H272v-32h-85.33c-5.89 0-10.67-3.58-10.67-8v-16c0-4.42 4.78-8 10.67-8H272c0-53.02-42.98-96-96-96S80 42.98 80 96v160c0 53.02 42.98 96 96 96z"/></svg>
+                        <a href="tel:+31629321567">+31 6 29 32 15 67</a>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 512 512" aria-hidden="true"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
+                        <a href="mailto:info@mimugarten.nl">info@mimugarten.nl</a>
+                    </li>
+                    <li class="mg-header__contact-address">
+                        <svg viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"/></svg>
+                        <span data-i18n="header_address">Schipperswal 32, 6041 TC Roermond, Nederland</span>
+                    </li>
+                </ul>
+                <div class="mg-header__socials">
+                    <a href="https://www.facebook.com/profile.php?id=61583749628509" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg viewBox="0 0 512 512" aria-hidden="true"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/mimugarten/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main nav (white) -->
+        <div class="mg-header__main">
+            <div class="mg-header__container">
+                <a href="https://mimugarten.nl/" class="mg-header__logo">
+                    <img src="./assets/images/mimugarten-logo.png" alt="MimuGarten">
+                </a>
+                <nav class="mg-header__nav" aria-label="Hoofdnavigatie">
+                    <ul>
+                        <li><a href="https://mimugarten.nl/nl/" target="_blank" data-i18n="nav_home">Home</a></li>
+                        <li class="mg-header__nav-has-sub">
+                            <a href="https://mimugarten.nl/nl/unsere-produkte/" target="_blank" aria-haspopup="true" aria-expanded="false" data-i18n="nav_products">Onze producten</a>
+                            <svg class="mg-header__nav-caret" viewBox="0 0 320 512" aria-hidden="true"><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"/></svg>
+                            <ul class="mg-header__sub" hidden>
+                                <li><a href="https://mimugarten.nl/nl/uberdachung/" target="_blank" data-i18n="sub_uberdachung">Overkapping</a></li>
+                                <li><a href="https://mimugarten.nl/nl/wintergarten/" target="_blank" data-i18n="sub_wintergarten">Serres</a></li>
+                                <li><a href="https://mimugarten.nl/nl/sonnenschutz-fur-terrassenuberdachungen/" target="_blank" data-i18n="sub_sonnenschutz">Zonwering voor terrasoverkappingen</a></li>
+                                <li><a href="https://mimugarten.nl/nl/glasschiebewande/" target="_blank" data-i18n="sub_glasschiebewande">Glazen schuifwanden</a></li>
+                                <li><a href="https://mimugarten.nl/nl/pergamon-aluminium-terrassenuberdachung/" target="_blank" data-i18n="sub_pergamon">Pergamon aluminium terrasoverkapping</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="https://mimugarten.nl/nl/montage-und-service/" target="_blank" data-i18n="nav_montage">Installatie en service</a></li>
+                        <li><a href="https://mimugarten.nl/nl/contact/" target="_blank" data-i18n="nav_contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="mg-langswitch" id="mg-langswitch">
+                    <button class="mg-langswitch__current" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Taalwisselaar">
+                        <img class="mg-langswitch__flag" src="https://cdn.weglot.com/flags/circle/nl.svg" alt="NL" width="26" height="26">
+                        <svg class="mg-langswitch__chevron" viewBox="0 0 320 512" aria-hidden="true"><path fill="currentColor" d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"/></svg>
+                    </button>
+                    <ul class="mg-langswitch__list" role="listbox" hidden>
+                        <li role="option">
+                            <button class="lang-btn mg-langswitch__option" type="button" data-lang="nl">
+                                <img src="https://cdn.weglot.com/flags/circle/nl.svg" alt="NL" width="26" height="26">
+                                <span>Nederlands</span>
+                            </button>
+                        </li>
+                        <li role="option">
+                            <button class="lang-btn mg-langswitch__option" type="button" data-lang="de">
+                                <img src="https://cdn.weglot.com/flags/circle/de.svg" alt="DE" width="26" height="26">
+                                <span>Deutsch</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <button class="mg-header__toggle" aria-label="Menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+        <div class="main">
+            <!-- Hero Section -->
+            <section class="section header hero-section">
+                <div class="hero-bg" style="background-image: url('./assets/images/Frontpage_image.avif')"></div>
+                <div class="hero-overlay"></div>
+                <div class="container">
+                    <div class="hero-content">
+                        <p class="hero-subtitle-small" data-i18n="hero_subtitle" data-i18n-html="true">Klaar in 10 dagen<br>10 jaar garantie op product en montage
+                        </p>
+                        <h1 class="hero-title" data-i18n="hero_title" data-i18n-html="true">Configureer uw droomoverkapping</h1>
+                        <button id="hero-btn" class="link-button">
+                            <span class="text-link-block" data-i18n="hero_button">Start Configuratie</span>
+                            <div class="icon-embed-xsmall">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Configurator Section -->
+            <section id="configurator" class="section light">
+                <div class="spacer-large"></div>
+                <div class="container">
+
+                    <div class="wizard-container">
+
+                        <!-- Left Column: Preview -->
+                        <div class="wizard-preview preview-sticky">
+                            <div class="preview-container" id="preview-container-main">
+                                <div style="position: relative;">
+                                    <div id="loader" class="loader">
+                                        <div class="spinner">
+                                            <div class="bounce1"></div>
+                                            <div class="bounce2"></div>
+                                            <div class="bounce3"></div>
+                                        </div>
+                                        <span class="loader-text" id="status-message"
+                                            data-i18n="loader_building">Veranda wordt voor u gebouwd...</span>
+                                        <button onclick="hideLoader()" class="loader-skip" data-i18n="loader_skip">
+                                            Doorgaan zonder render
+                                        </button>
+                                    </div>
+                                    <img id="preview-image" src="" alt="Veranda Preview" class="preview-image">
+
+                                    <!-- Render Unavailable Overlay -->
+                                    <div id="render-unavailable-overlay" class="render-unavailable-overlay">
+                                        <div class="render-unavailable-content">
+                                            <div class="render-unavailable-icon">⚠️</div>
+                                            <h3 class="render-unavailable-title" data-i18n="render_unavailable_title">
+                                                Afbeelding tijdelijk niet beschikbaar</h3>
+                                            <p class="render-unavailable-message"
+                                                data-i18n="render_unavailable_message">
+                                                Vanwege technische problemen kan de configuratie-afbeelding momenteel
+                                                niet realtime worden bijgewerkt.
+                                                De weergegeven afbeelding komt mogelijk niet overeen met uw huidige
+                                                configuratie.
+                                            </p>
+                                            <p class="render-unavailable-message" data-i18n="render_unavailable_note">
+                                                Na uw prijsaanvraag kunnen wij de bijbehorende afbeelding op verzoek
+                                                toesturen.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Sticky Price Badge on Preview (hidden - price now below wizard steps) -->
+                                    <div id="preview-price-badge" class="preview-price-badge" style="display: none;">
+                                        <span class="preview-price-badge-label"
+                                            data-i18n="preview_price_label">Totaalprijs:</span>
+                                        <span class="preview-price-badge-value">€ <span
+                                                id="preview-badge-price">0</span></span>
+                                    </div>
+
+                                    <p class="image-disclaimer" data-i18n="image_disclaimer">De afbeelding is indicatief
+                                        en hier kunnen geen rechten aan ontleend worden.</p>
+
+                                    <!-- ViewMode Navigation Controls -->
+                                    <div id="main-navigation" class="viewmode-navigation">
+                                        <button class="viewmode-nav-btn viewmode-nav-up"
+                                            onclick="navigateViewMode('up')" title="Bovenaanzicht" data-testid="nav-up">
+                                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                        <button class="viewmode-nav-btn viewmode-nav-left"
+                                            onclick="navigateViewMode('left')" title="Linkeraanzicht"
+                                            data-testid="nav-left">
+                                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                        <button class="viewmode-nav-btn viewmode-nav-right"
+                                            onclick="navigateViewMode('right')" title="Rechteraanzicht"
+                                            data-testid="nav-right">
+                                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                        <button class="viewmode-nav-btn viewmode-nav-down"
+                                            onclick="navigateViewMode('down')" title="Frontaanzicht"
+                                            data-testid="nav-down">
+                                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                        <button class="viewmode-nav-btn viewmode-fullscreen-btn"
+                                            onclick="toggleFullscreen('preview-container-main')" title="Volledig scherm"
+                                            data-testid="nav-fullscreen">
+                                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="daynight-toggle">
+                                        <button id="day-btn" class="daynight-btn active">
+                                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                        <button id="night-btn" class="daynight-btn">
+                                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Simple Price Display (hidden - moved to wizard inline price) -->
+                            <div id="simple-price" class="simple-price" style="display: none;">
+                                <div class="simple-price-amount">
+                                    <span class="simple-price-label" data-i18n="preview_price_label">Totaalprijs:</span>
+                                    <span class="simple-price-value">€ <span id="simple-total-price">0</span></span>
+                                    <span class="simple-price-note" data-i18n="preview_price_note">Inclusief BTW en
+                                        montage</span>
+                                </div>
+                                <!-- Pricing Error Warning -->
+                                <div id="pricing-error-warning" class="pricing-error-warning" style="display: none;">
+                                    <span class="pricing-error-icon">⚠️</span>
+                                    <span class="pricing-error-text" data-i18n="pricing_error_message">De prijs kon niet
+                                        correct berekend worden. Neem telefonisch contact op voor een correcte
+                                        prijsopgave: +31 475 400 922</span>
+                                </div>
+                                <button id="quote-btn" class="quote-btn-green" data-i18n="preview_quote_button">
+                                    Aanvraag indienen
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Right Side: Wizard -->
+                        <div class="wizard-right">
+                            <!-- Wizard Content (slide-out panels) -->
+                            <div class="wizard-content">
+
+                                <!-- Step 1: Afmetingen -->
+                                <div id="wizard-step-1" class="wizard-step-panel active">
+                                    <h2 class="wizard-step-title" data-i18n="step1_title">Afmetingen</h2>
+                                    <p class="wizard-step-description" data-i18n="step1_description">Geef de gewenste
+                                        afmetingen van uw veranda op.</p>
+
+                                    <div class="wizard-input-group">
+                                        <label for="wizard-width" data-i18n="step1_width_label">Breedte (meter)</label>
+                                        <input type="text" id="wizard-width" inputmode="decimal" value="6">
+                                        <small style="color: #6b7280; margin-top: 0.25rem; display: block;"
+                                            data-i18n="step1_width_hint">Min. 3m - Max. 12m</small>
+                                    </div>
+
+                                    <div class="wizard-input-group">
+                                        <label for="wizard-depth" data-i18n="step1_depth_label">Diepte (meter)</label>
+                                        <input type="text" id="wizard-depth" inputmode="decimal" value="3">
+                                        <small style="color: #6b7280; margin-top: 0.25rem; display: block;"
+                                            data-i18n="step1_depth_hint">Min. 2.5m - Max. 5m</small>
+                                    </div>
+
+                                    <div class="wizard-nav-buttons">
+                                        <button class="wizard-btn wizard-btn-prev" onclick="wizardPrev()"
+                                            data-i18n="wizard_button_prev">Vorige</button>
+                                        <button class="wizard-btn wizard-btn-next" onclick="wizardNext()"
+                                            data-i18n="wizard_button_next">Volgende</button>
+                                    </div>
+                                </div>
+
+                                <!-- Step 3: Type Veranda -->
+                                <div id="wizard-step-2" class="wizard-step-panel">
+                                    <h2 class="wizard-step-title" data-i18n="step2_title">Type veranda</h2>
+                                    <p class="wizard-step-description" data-i18n="step2_description">Kies het type
+                                        veranda dat bij u past.</p>
+
+                                    <div class="wizard-options">
+                                        <label class="wizard-option">
+                                            <input type="radio" name="verandaType" value="0" checked>
+                                            <span class="wizard-option-label-wrapper">
+                                                <span data-i18n="step2_option_standaard">Standaard</span>
+                                                <button type="button" class="info-icon"
+                                                    data-info-key="info_step2_standard" aria-label="Info"></button>
+                                            </span>
+                                        </label>
+                                        <label class="wizard-option wizard-option-premium">
+                                            <input type="radio" name="verandaType" value="1">
+                                            <span class="wizard-option-label-wrapper">
+                                                <span>
+                                                    <span data-i18n="step2_option_pergamon">Pergamon</span>
+                                                    <span class="badge-premium" data-i18n="step2_badge_premium">PRIME
+                                                        UITVOERING</span>
+                                                </span>
+                                                <button type="button" class="info-icon"
+                                                    data-info-key="info_step2_pergamon" aria-label="Info"></button>
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <div class="wizard-nav-buttons">
+                                        <button class="wizard-btn wizard-btn-prev" onclick="wizardPrev()"
+                                            data-i18n="wizard_button_prev">Vorige</button>
+                                        <button class="wizard-btn wizard-btn-next" onclick="wizardNext()"
+                                            data-i18n="wizard_button_next">Volgende</button>
+                                    </div>
+                                </div>
+
+                                <!-- Step 4: Kleur -->
+                                <div id="wizard-step-3" class="wizard-step-panel">
+                                    <h2 class="wizard-step-title" data-i18n="step3_title">Kleur</h2>
+                                    <p class="wizard-step-description" data-i18n="step3_description">Selecteer de kleur
+                                        van uw veranda.</p>
+
+                                    <div class="wizard-options">
+                                        <label class="wizard-option wizard-option-color">
+                                            <input type="radio" name="color" value="383e42" checked>
+                                            <div class="color-swatch" style="background-color: #383e42;"></div>
+                                            <span data-i18n="step3_color_anthracite">RAL 7016 (Antracietgrijs)</span>
+                                        </label>
+                                        <label class="wizard-option wizard-option-color">
+                                            <input type="radio" name="color" value="f1f0ea">
+                                            <div class="color-swatch" style="background-color: #f1f0ea;"></div>
+                                            <span data-i18n="step3_color_cream">RAL 9016 (Verkeerswit)</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="wizard-nav-buttons">
+                                        <button class="wizard-btn wizard-btn-prev" onclick="wizardPrev()"
+                                            data-i18n="wizard_button_prev">Vorige</button>
+                                        <button class="wizard-btn wizard-btn-next" onclick="wizardNext()"
+                                            data-i18n="wizard_button_next">Volgende</button>
+                                    </div>
+                                </div>
+
+                                <!-- Step 5: Afwerkingskap -->
+                                <div id="wizard-step-4" class="wizard-step-panel">
+                                    <h2 class="wizard-step-title" data-i18n="step4_title">Afwerkingskap</h2>
+                                    <p class="wizard-step-description" data-i18n="step4_description">Kies de stijl van
+                                        de afwerkingskap.</p>
+
+                                    <div class="wizard-options">
+                                        <label class="wizard-option">
+                                            <input type="radio" name="finishingCap" value="0" checked>
+                                            <span data-i18n="step4_option_modern">Modern</span>
+                                        </label>
+                                        <label class="wizard-option">
+                                            <input type="radio" name="finishingCap" value="1">
+                                            <span data-i18n="step4_option_classic">Klassiek</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="wizard-nav-buttons">
+                                        <button class="wizard-btn wizard-btn-prev" onclick="wizardPrev()"
+                                            data-i18n="wizard_button_prev">Vorige</button>
+                                        <button class="wizard-btn wizard-btn-next" onclick="wizardNext()"
+                                            data-i18n="wizard_button_next">Volgende</button>
+                                    </div>
+                                </div>
+
+                                <!-- Step 6: Dakplaat -->
+                                <div id="wizard-step-5" class="wizard-step-panel">
+                                    <h2 class="wizard-step-title" data-i18n="step5_title">Dakplaat</h2>
+                                    <p class="wizard-step-description" data-i18n="step5_description">Kies het type
+                                        dakplaat.</p>
+
+                                    <div class="wizard-options">
+                                        <label class="wizard-option">
+                                            <input type="radio" name="covering" value="0" checked>
+                                            <span class="wizard-option-label-wrapper">
+                                                <span data-i18n="step5_option_opaal">Opaal polycarbonaat</span>
+                                                <button type="button" class="info-icon" data-info-key="info_step5_opaal"
+                                                    aria-label="Info"></button>
+                                            </span>
+                                        </label>
+                                        <label class="wizard-option">
+                                            <input type="radio" name="covering" value="1">
+                                            <span class="wizard-option-label-wrapper">
+                                                <span data-i18n="step5_option_helder">Helder polycarbonaat</span>
+                                                <button type="button" class="info-icon"
+                                                    data-info-key="info_step5_helder" aria-label="Info"></button>
+                                            </span>
+                                        </label>
+                                        <label class="wizard-option">
+                                            <input type="radio" name="covering" value="2">
+                                            <span class="wizard-option-label-wrapper">
+                                                <span data-i18n="step5_option_glas">Glas</span>
+                                                <button type="button" class="info-icon" data-info-key="info_step5_glas"
+                                                    aria-label="Info"></button>
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <div class="wizard-nav-buttons">
+                                        <button class="wizard-btn wizard-btn-prev" onclick="wizardPrev()"
+                                            data-i18n="wizard_button_prev">Vorige</button>
+                                        <button class="wizard-btn wizard-btn-next" onclick="wizardNext()"
+                                            data-i18n="wizard_button_next">Volgende</button>
+                                    </div>
+                                </div>
+
+                                <!-- Step 7: Linker Zijde -->
+                                <div id="wizard-step-6" class="wizard-step-panel">
+                                    <h2 class="wizard-step-title" data-i18n="step6_title">Linker zijde</h2>
+                                    <p class="wizard-step-description" data-i18n="step6_description">Kies de afwerking
+                                        voor de linker zijwand.</p>
+
+                                    <div class="wizard-options">
+                                        <label class="wizard-option">
+                                            <input type="radio" name="leftWall" value="0" checked>
+                                            <span data-i18n="step6_option_none">Geen</span>
+                                        </label>
+                                        <label class="wizard-option">
+                                            <input type="radio" name="leftWall" value="1">
+                                            <span class="wizard-option-label-wrapper">
+                                                <span data-i18n="step6_option_glass_rail">Glazen schuiframen met
+                                                    spies</span>
+                                                <button type="button" class="info-icon"
+                                                    data-info-key="info_step6_glass_rail" aria-label="Info"></button>
+                                            </span>
+                                        </label>
+                                        <label class="wizard-option">
+                                            <input type="radio" name="leftWall" value="2">
+                                            <span class="wizard-option-label-wrapper">
+                                                <span data-i18n="step6_option_alu_rail">Aluminiumwand met spies</span>
+                                                <button type="button" class="info-icon"
+                                                    data-info-key="info_step6_alu_rail" aria-label="Info"></button>
+                                            </span>
+                                        </label>
+                                        <label class="wizard-option">
+                                            <input type="radio" name="leftWall" value="3">
+                                            <span class="wizard-option-label-wrapper">
+                                                <span data-i18n="step6_option_rail_only">Alleen spies</span>
+                                                <button type="button" class="info-icon"
+                                                    data-info-key="info_step6_rail_only" aria-label="Info"></button>
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <div class="wizard-nav-buttons">
+                                        <button class="wizard-btn wizard-btn-prev" onclick="wizardPrev()"
+                                            data-i18n="wizard_button_prev">Vorige</button>
+                                        <button class="wizard-btn wizard-btn-next" onclick="wizardNext()"
+                                            data-i18n="wizard_button_next">Volgende</button>
+                                    </div>
+                                </div>
+
+                                <!-- Step 8: Rechter Zijde -->
+                                <div id="wizard-step-7" class="wizard-step-panel">
+                                    <h2 class="wizard-step-title" data-i18n="step7_title">Rechter zijde</h2>
+                                    <p class="wizard-step-description" data-i18n="step7_description">Kies de afwerking
+                                        voor de rechter zijwand.</p>
+
+                                    <div class="wizard-options">
+                                        <label class="wizard-option">
+                                            <input type="radio" name="rightWall" value="0" checked>
+                                            <span data-i18n="step7_option_none">Geen</span>
+                                        </label>
+                                        <label class="wizard-option">
+                                            <input type="radio" name="rightWall" value="1">
+                                            <span class="wizard-option-label-wrapper">
+                                                <span data-i18n="step7_option_glass_rail">Glazen schuiframen met
+                                                    spies</span>
+                                                <button type="button" class="info-icon"
+                                                    data-info-key="info_step6_glass_rail" aria-label="Info"></button>
+                                            </span>
+                                        </label>
+                                        <label class="wizard-option">
+                                            <input type="radio" name="rightWall" value="2">
+                                            <span class="wizard-option-label-wrapper">
+                                                <span data-i18n="step7_option_alu_rail">Aluminiumwand met spies</span>
+                                                <button type="button" class="info-icon"
+                                                    data-info-key="info_step6_alu_rail" aria-label="Info"></button>
+                                            </span>
+                                        </label>
+                                        <label class="wizard-option">
+                                            <input type="radio" name="rightWall" value="3">
+                                            <span class="wizard-option-label-wrapper">
+                                                <span data-i18n="step7_option_rail_only">Alleen spies</span>
+                                                <button type="button" class="info-icon"
+                                                    data-info-key="info_step6_rail_only" aria-label="Info"></button>
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <div class="wizard-nav-buttons">
+                                        <button class="wizard-btn wizard-btn-prev" onclick="wizardPrev()"
+                                            data-i18n="wizard_button_prev">Vorige</button>
+                                        <button class="wizard-btn wizard-btn-next" onclick="wizardNext()"
+                                            data-i18n="wizard_button_next">Volgende</button>
+                                    </div>
+                                </div>
+
+                                <!-- Step 9: Voorzijde -->
+                                <div id="wizard-step-8" class="wizard-step-panel">
+                                    <h2 class="wizard-step-title" data-i18n="step8_title">Voorzijde</h2>
+                                    <p class="wizard-step-description" data-i18n="step8_description">Kies de afwerking
+                                        voor de voorzijde.</p>
+
+                                    <div class="wizard-options">
+                                        <label class="wizard-option">
+                                            <input type="radio" name="frontWall" value="0" checked>
+                                            <span data-i18n="step8_option_none">Geen</span>
+                                        </label>
+                                        <label class="wizard-option">
+                                            <input type="radio" name="frontWall" value="1">
+                                            <span class="wizard-option-label-wrapper">
+                                                <span data-i18n="step8_option_glass">Glazen schuiframen</span>
+                                                <button type="button" class="info-icon" data-info-key="info_step8_glass"
+                                                    aria-label="Info"></button>
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <div class="wizard-nav-buttons">
+                                        <button class="wizard-btn wizard-btn-prev" onclick="wizardPrev()"
+                                            data-i18n="wizard_button_prev">Vorige</button>
+                                        <button class="wizard-btn wizard-btn-next" onclick="wizardNext()"
+                                            data-i18n="wizard_button_next">Volgende</button>
+                                    </div>
+                                </div>
+
+                                <!-- Step 10: Extra's -->
+                                <div id="wizard-step-9" class="wizard-step-panel">
+                                    <h2 class="wizard-step-title" data-i18n="step9_title">Extra opties</h2>
+                                    <p class="wizard-step-description" data-i18n="step9_description">Selecteer eventuele
+                                        extra opties.</p>
+
+                                    <div class="wizard-options">
+                                        <label class="wizard-option wizard-option-checkbox">
+                                            <input type="checkbox" id="led-checkbox" name="ledCheckbox">
+                                            <span class="wizard-option-label-wrapper">
+                                                <span data-i18n="step9_led">LED verlichting</span>
+                                                <button type="button" class="info-icon" data-info-key="info_step9_led"
+                                                    aria-label="Info"></button>
+                                            </span>
+                                        </label>
+
+                                        <label class="wizard-option wizard-option-checkbox">
+                                            <input type="checkbox" id="markiezen-checkbox" name="markiezenCheckbox">
+                                            <span class="wizard-option-label-wrapper">
+                                                <span><span data-i18n="step9_markiezen">Markiezen / Zonwering</span>
+                                                    <small style="color: #666;"><span
+                                                            data-i18n="step9_price_on_request">(Prijs op
+                                                            aanvraag)</span></small></span>
+                                                <button type="button" class="info-icon"
+                                                    data-info-key="info_step9_awnings" aria-label="Info"></button>
+                                            </span>
+                                        </label>
+
+                                        <label class="wizard-option wizard-option-checkbox">
+                                            <input type="checkbox" id="screens-checkbox" name="screensCheckbox">
+                                            <span class="wizard-option-label-wrapper">
+                                                <span><span data-i18n="step9_screens">Screens</span> <small
+                                                        style="color: #666;"><span
+                                                            data-i18n="step9_price_on_request">(Prijs op
+                                                            aanvraag)</span></small></span>
+                                                <button type="button" class="info-icon"
+                                                    data-info-key="info_step9_screens" aria-label="Info"></button>
+                                            </span>
+                                        </label>
+
+                                        <label class="wizard-option wizard-option-checkbox">
+                                            <input type="checkbox" id="vaste-kozijnen-checkbox"
+                                                name="vasteKozijnenCheckbox">
+                                            <span class="wizard-option-label-wrapper">
+                                                <span><span data-i18n="step9_vaste_kozijnen">Vaste Kozijnen</span>
+                                                    <small style="color: #666;"><span
+                                                            data-i18n="step9_price_on_request">(Prijs op
+                                                            aanvraag)</span></small></span>
+                                                <button type="button" class="info-icon"
+                                                    data-info-key="info_step9_frames" aria-label="Info"></button>
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <div class="wizard-nav-buttons">
+                                        <button class="wizard-btn wizard-btn-prev" onclick="wizardPrev()"
+                                            data-i18n="wizard_button_prev">Vorige</button>
+                                        <button class="wizard-btn wizard-btn-next wizard-btn-quote"
+                                            onclick="openQuoteModal()" data-i18n="wizard_button_submit">Aanvraag
+                                            indienen</button>
+                                    </div>
+                                </div>
+
+                                <!-- Inline Price (visible when widget is closed) -->
+                                <div id="wizard-inline-price" class="wizard-inline-price" style="display: none;">
+                                    <div class="wizard-inline-price-row">
+                                        <span class="wizard-inline-price-label"
+                                            data-i18n="preview_price_label">Totaalprijs:</span>
+                                        <span class="wizard-inline-price-value">€ <span
+                                                id="wizard-inline-total-price">0</span></span>
+                                    </div>
+                                    <span class="wizard-inline-price-note" data-i18n="preview_price_note">Inclusief BTW
+                                        en
+                                        montage</span>
+                                    <!-- Pricing Error Warning -->
+                                    <div id="wizard-pricing-error-warning" class="pricing-error-warning"
+                                        style="display: none;">
+                                        <span class="pricing-error-icon">⚠️</span>
+                                        <span class="pricing-error-text" data-i18n="pricing_error_message">De prijs kon
+                                            niet
+                                            correct berekend worden. Neem telefonisch contact op voor een correcte
+                                            prijsopgave: +31 475 400 922</span>
+                                    </div>
+                                    <button class="quote-btn-green wizard-inline-quote-btn" onclick="openQuoteModal()"
+                                        data-i18n="preview_quote_button">Aanvraag indienen</button>
+                                </div>
+
+                            </div>
+
+                            <!-- Wizard Stepper (vertical sidebar) -->
+                            <div class="wizard-stepper">
+                                <div class="wizard-step-item active" data-step="1" onclick="wizardGoToStep(1)">
+                                    <div class="wizard-step-number">1</div>
+                                    <div class="wizard-step-label" data-i18n="stepper_step1">Afmetingen</div>
+                                </div>
+                                <div class="wizard-step-item" data-step="2" onclick="wizardGoToStep(2)">
+                                    <div class="wizard-step-number">2</div>
+                                    <div class="wizard-step-label" data-i18n="stepper_step2">Type veranda</div>
+                                </div>
+                                <div class="wizard-step-item" data-step="3" onclick="wizardGoToStep(3)">
+                                    <div class="wizard-step-number">3</div>
+                                    <div class="wizard-step-label" data-i18n="stepper_step3">Kleur</div>
+                                </div>
+                                <div class="wizard-step-item" data-step="4" onclick="wizardGoToStep(4)">
+                                    <div class="wizard-step-number">4</div>
+                                    <div class="wizard-step-label" data-i18n="stepper_step4">Afwerkingskap</div>
+                                </div>
+                                <div class="wizard-step-item" data-step="5" onclick="wizardGoToStep(5)">
+                                    <div class="wizard-step-number">5</div>
+                                    <div class="wizard-step-label" data-i18n="stepper_step5">Dakplaat</div>
+                                </div>
+                                <div class="wizard-step-item" data-step="6" onclick="wizardGoToStep(6)">
+                                    <div class="wizard-step-number">6</div>
+                                    <div class="wizard-step-label" data-i18n="stepper_step6">Linker zijde</div>
+                                </div>
+                                <div class="wizard-step-item" data-step="7" onclick="wizardGoToStep(7)">
+                                    <div class="wizard-step-number">7</div>
+                                    <div class="wizard-step-label" data-i18n="stepper_step7">Rechter zijde</div>
+                                </div>
+                                <div class="wizard-step-item" data-step="8" onclick="wizardGoToStep(8)">
+                                    <div class="wizard-step-number">8</div>
+                                    <div class="wizard-step-label" data-i18n="stepper_step8">Voorzijde</div>
+                                </div>
+                                <div class="wizard-step-item" data-step="9" onclick="wizardGoToStep(9)">
+                                    <div class="wizard-step-number">9</div>
+                                    <div class="wizard-step-label" data-i18n="stepper_step9">Extra opties</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+    </div>
+    </section>
+    </div>
+
+    <!-- Footer — matching mimugarten.nl -->
+    <footer id="footer" class="mg-footer">
+        <div class="mg-footer__container">
+            <div class="mg-footer__cols">
+                <!-- Kolom 1: Adres + uren + contact -->
+                <div class="mg-footer__col mg-footer__col--contact">
+                    <p class="mg-footer__address" data-i18n="footer_address" data-i18n-html="true">Adres van de tentoonstelling: Schipperswal 32<br>6041 TC Roermond<br>Nederland<br>Naast het Designer Outlet Center</p>
+                    <p class="mg-footer__hours" data-i18n="footer_hours" data-i18n-html="true">Maandag t/m zaterdag: 09:00 – 17:00<br>Zondag: 12:00 – 17:00</p>
+                    <p class="mg-footer__contact-line">
+                        <a href="tel:+31629321567">+31 6 29 32 15 67</a><br>
+                        <a href="mailto:info@mimugarten.nl">info@mimugarten.nl</a>
+                    </p>
+                    <p class="mg-footer__hours-label" data-i18n="footer_hours_label">Openingstijden</p>
+                </div>
+
+                <!-- Kolom 2: Mimu Tuin menu -->
+                <div class="mg-footer__col">
+                    <h2 class="mg-footer__title" data-i18n="footer_title_company">Mimu Tuin</h2>
+                    <nav class="mg-footer__nav" aria-label="Footer menu">
+                        <ul>
+                            <li><a href="https://mimugarten.nl/nl/" target="_blank" data-i18n="footer_link_home">Home</a></li>
+                            <li><a href="https://mimugarten.nl/nl/unsere-produkte/" target="_blank" data-i18n="footer_link_products">Onze producten</a></li>
+                            <li><a href="https://mimugarten.nl/nl/montage-und-service/" target="_blank" data-i18n="footer_link_montage">Installatie en service</a></li>
+                            <li><a href="https://mimugarten.nl/nl/contact/" target="_blank" data-i18n="footer_link_contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Kolom 3: Volg ons op -->
+                <div class="mg-footer__col">
+                    <h2 class="mg-footer__title" data-i18n="footer_title_social">Volg ons op</h2>
+                    <div class="mg-footer__socials">
+                        <a href="https://www.facebook.com/profile.php?id=61583749628509" target="_blank" rel="noopener" aria-label="Facebook">
+                            <svg viewBox="0 0 512 512" aria-hidden="true"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/mimugarten/" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mg-footer__bottom">
+                <p>© <span id="current-year">2026</span> Mimu Garten. <span data-i18n="footer_copyright">Alle rechten voorbehouden</span></p>
+                <p class="mg-footer__credits">
+                    <a href="https://therealmag.eu/" target="_blank" rel="noopener" data-i18n="footer_configurator_by">Configurator by THE REAL MAG.</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Preview Widget -->
+    <div id="widget-backdrop" class="widget-backdrop"></div>
+
+    <div id="preview-widget" class="preview-widget">
+        <div class="widget-content">
+            <!-- Collapse chevron (mobile only - slide preview down/up) -->
+            <button id="widget-collapse-toggle" class="widget-collapse-toggle" style="display: none;"
+                aria-label="Toggle preview">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </button>
+            <div class="widget-header">
+                <h3 data-i18n="widget_title">Uw Veranda Preview</h3>
+                <button id="widget-close" class="widget-close" aria-label="Sluit preview">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="widget-preview" id="widget-preview-container">
+                <div id="widget-loader" class="loader">
+                    <div class="spinner">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                    </div>
+                    <span class="loader-text" data-i18n="loader_loading">Laden...</span>
+                </div>
+                <img id="widget-preview-image" src="" alt="Veranda Preview" class="widget-preview-image">
+
+                <!-- Render Unavailable Overlay for Widget -->
+                <div id="widget-render-unavailable-overlay" class="render-unavailable-overlay widget-overlay">
+                    <div class="render-unavailable-content">
+                        <div class="render-unavailable-icon">⚠️</div>
+                        <h3 class="render-unavailable-title" data-i18n="render_unavailable_title">Afbeelding tijdelijk
+                            niet beschikbaar</h3>
+                        <p class="render-unavailable-message-compact" data-i18n="render_unavailable_message">
+                            Vanwege technische problemen kan de configuratie-afbeelding momenteel niet realtime worden
+                            bijgewerkt.
+                            De weergegeven afbeelding komt mogelijk niet overeen met uw huidige configuratie.
+                        </p>
+                        <p class="render-unavailable-message-compact" data-i18n="render_unavailable_note">
+                            Na uw prijsaanvraag kunnen wij de bijbehorende afbeelding op verzoek toesturen.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ViewMode Navigation Controls for Widget -->
+                <div id="widget-navigation" class="viewmode-navigation widget-navigation">
+                    <button class="viewmode-nav-btn viewmode-nav-up" onclick="navigateViewMode('up')"
+                        title="Bovenaanzicht" data-testid="widget-nav-up">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <button class="viewmode-nav-btn viewmode-nav-left" onclick="navigateViewMode('left')"
+                        title="Linkeraanzicht" data-testid="widget-nav-left">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <button class="viewmode-nav-btn viewmode-nav-right" onclick="navigateViewMode('right')"
+                        title="Rechteraanzicht" data-testid="widget-nav-right">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <button class="viewmode-nav-btn viewmode-nav-down" onclick="navigateViewMode('down')"
+                        title="Frontaanzicht" data-testid="widget-nav-down">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <button class="viewmode-nav-btn viewmode-fullscreen-btn"
+                        onclick="toggleFullscreen('widget-preview-container')" title="Volledig scherm"
+                        data-testid="widget-nav-fullscreen">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Dag/Nacht Toggle in Widget (rechtsboven) -->
+                <div class="daynight-toggle widget-daynight">
+                    <button id="widget-day-btn" class="daynight-btn active" title="Dag modus">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <button id="widget-night-btn" class="daynight-btn" title="Nacht modus">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="widget-info">
+                <div class="widget-price-section">
+                    <div class="widget-price-line">
+                        <span class="widget-price-label" data-i18n="widget_price_label">Totaalprijs:</span>
+                        <p class="widget-price" id="widget-total-price">€ 0</p>
+                    </div>
+                    <span class="widget-price-note" data-i18n="widget_price_note">Inclusief BTW en montage</span>
+                </div>
+                <button id="widget-quote-btn" class="widget-quote-btn" onclick="openQuoteModal()"
+                    data-i18n="widget_quote_button">
+                    Aanvraag indienen
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Widget Toggle Button - OUTSIDE widget frame, positioned as sibling AFTER widget -->
+    <button id="widget-toggle" class="widget-toggle" aria-label="Toggle preview">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <polyline points="21 15 16 10 5 21" />
+        </svg>
+    </button>
+    </div>
+
+    <!-- Offerte Pop-up Modal -->
+    <div id="quote-modal" class="quote-modal">
+        <div class="quote-modal-overlay" id="quote-modal-overlay"></div>
+        <div class="quote-modal-content">
+            <button class="quote-modal-close" id="quote-modal-close">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </button>
+
+            <h2 class="quote-modal-title" data-i18n="modal_title">Aanvraag indienen</h2>
+
+            <div class="quote-modal-body">
+                <!-- Left: Preview & Price -->
+                <div class="quote-preview">
+                    <h3 data-i18n="modal_config_title">Uw Configuratie</h3>
+
+                    <!-- Image container with loader -->
+                    <div class="quote-image-container">
+                        <img id="quote-preview-image" src="" alt="Uw veranda" class="quote-preview-img"
+                            data-i18n="modal_config_image_alt" data-i18n-attr="alt">
+
+                        <!-- Render Unavailable Overlay for Quote Modal -->
+                        <div id="quote-render-unavailable-overlay" class="render-unavailable-overlay quote-overlay">
+                            <div class="render-unavailable-content">
+                                <div class="render-unavailable-icon">⚠️</div>
+                                <h3 class="render-unavailable-title" data-i18n="render_unavailable_title">Afbeelding
+                                    tijdelijk niet beschikbaar</h3>
+                                <p class="render-unavailable-message" data-i18n="render_unavailable_message">
+                                    Vanwege technische problemen kan de configuratie-afbeelding momenteel niet realtime
+                                    worden bijgewerkt.
+                                    De weergegeven afbeelding komt mogelijk niet overeen met uw huidige configuratie.
+                                </p>
+                                <p class="render-unavailable-message" data-i18n="render_unavailable_note">
+                                    Na uw prijsaanvraag kunnen wij de bijbehorende afbeelding op verzoek toesturen.
+                                </p>
+                            </div>
+                        </div>
+
+                        <p class="quote-image-disclaimer" data-i18n="image_disclaimer">De afbeelding is indicatief en
+                            hier kunnen geen rechten aan ontleend worden.</p>
+
+                        <!-- Loader overlay -->
+                        <div id="quote-image-loader" class="quote-image-loader">
+                            <div class="loader-spinner"></div>
+                            <div class="loader-text" data-i18n="modal_loader_generating">Afbeelding genereren...</div>
+                        </div>
+                    </div>
+
+                    <div class="quote-price-details">
+                        <div class="quote-price-row quote-price-total">
+                            <span data-i18n="modal_price_label">Prijs:</span>
+                            <span>€ <span id="quote-total-price">0</span></span>
+                        </div>
+                        <p class="quote-price-note" data-i18n="modal_price_incl">Inclusief montage & BTW</p>
+                        <p class="quote-price-note quote-price-warning" data-i18n="modal_warning_note">
+                            Opties buiten prijsopgave zijn niet inbegrepen
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right: Form & Configuration Details -->
+                <div class="quote-form">
+                    <form id="quote-form-element">
+                        <div class="form-group">
+                            <label for="quote-name" data-i18n="modal_form_name">Naam *</label>
+                            <input type="text" id="quote-name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quote-email" data-i18n="modal_form_email">E-mailadres *</label>
+                            <input type="email" id="quote-email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quote-phone" data-i18n="modal_form_phone">Telefoonnummer *</label>
+                            <input type="tel" id="quote-phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quote-address" data-i18n="modal_form_address">Straat + huisnummer *</label>
+                            <input type="text" id="quote-address" name="address" required
+                                placeholder="bijv. Kerkstraat 12"
+                                data-i18n-attr="placeholder:modal_form_address_placeholder">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group form-group-half">
+                                <label for="quote-zipcode" data-i18n="modal_form_zipcode">Postcode *</label>
+                                <input type="text" id="quote-zipcode" name="zipcode" required placeholder="1234 AB"
+                                    data-i18n-attr="placeholder:modal_form_zipcode_placeholder">
+                            </div>
+                            <div class="form-group form-group-half">
+                                <label for="quote-city" data-i18n="modal_form_city">Woonplaats *</label>
+                                <input type="text" id="quote-city" name="city" required placeholder="bijv. Amsterdam"
+                                    data-i18n-attr="placeholder:modal_form_city_placeholder">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quote-promo-code" data-i18n="modal_form_promo_code">Promotiecode</label>
+                            <input type="text" id="quote-promo-code" name="promo_code"
+                                placeholder="Vul hier uw promotiecode in (optioneel)"
+                                data-i18n-attr="placeholder:modal_form_promo_code_placeholder">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quote-message" data-i18n="modal_form_message">Opmerkingen</label>
+                            <textarea id="quote-message" name="message" rows="3"></textarea>
+                        </div>
+                    </form>
+
+                    <!-- Toggle button -->
+                    <button type="button" class="config-toggle-btn-inline" id="config-toggle-btn">
+                        <span data-i18n="modal_toggle_details">Toon configuratie details</span>
+                        <svg class="config-toggle-icon" width="20" height="20" fill="none" stroke="currentColor"
+                            stroke-width="2" viewBox="0 0 24 24">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+
+                    <!-- Configuration Summary -->
+                    <div id="quote-config-summary" class="quote-config-summary" style="display: none;">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" form="quote-form-element" class="quote-submit-btn-inline"
+                        data-i18n="modal_submit_button">
+                        Verstuur aanvraag
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- i18n Translation System (BEFORE configurator) -->
+
+    <!-- Error Handler (suppress dev/extension errors) -->
+
+    <!-- Configurator JS (ES Modules) -->
+</body>
+
+</html>

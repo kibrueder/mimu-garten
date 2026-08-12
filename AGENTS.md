@@ -1,6 +1,6 @@
 ## Site
 
-Static HTML rebuild of mimugarten.nl. No WordPress. No build step required at runtime (optional generator: `python3 build.py`).
+Static HTML clone of mimugarten.nl (WordPress/Elementor source). Rebuild from live: `python3 mirror.py`.
 
 Preview locally:
 

@@ -1,0 +1,126 @@
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: italic;
+  font-weight: 100;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70kjywflP6FLr3gZx7K8UyEVQnyR1E7VN-f51xYuGCQepOvB0KLc2v0wKKB0Q4MSZxyqf2CgAchbBh2_1c04a09d.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: italic;
+  font-weight: 200;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70kjywflP6FLr3gZx7K8UyEVQnyR1E7VN-f51xYuGCQepOvB0KLc2v0wKKB0Q4MSZxyqf2CgAchbBh2_1c04a09d.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: italic;
+  font-weight: 300;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70kjywflP6FLr3gZx7K8UyEVQnyR1E7VN-f51xYuGCQepOvB0KLc2v0wKKB0Q4MSZxyqf2CgAchbBh2_1c04a09d.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70kjywflP6FLr3gZx7K8UyEVQnyR1E7VN-f51xYuGCQepOvB0KLc2v0wKKB0Q4MSZxyqf2CgAchbBh2_1c04a09d.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: italic;
+  font-weight: 500;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70kjywflP6FLr3gZx7K8UyEVQnyR1E7VN-f51xYuGCQepOvB0KLc2v0wKKB0Q4MSZxyqf2CgAchbBh2_1c04a09d.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: italic;
+  font-weight: 600;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70kjywflP6FLr3gZx7K8UyEVQnyR1E7VN-f51xYuGCQepOvB0KLc2v0wKKB0Q4MSZxyqf2CgAchbBh2_1c04a09d.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: italic;
+  font-weight: 700;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70kjywflP6FLr3gZx7K8UyEVQnyR1E7VN-f51xYuGCQepOvB0KLc2v0wKKB0Q4MSZxyqf2CgAchbBh2_1c04a09d.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: italic;
+  font-weight: 800;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70kjywflP6FLr3gZx7K8UyEVQnyR1E7VN-f51xYuGCQepOvB0KLc2v0wKKB0Q4MSZxyqf2CgAchbBh2_1c04a09d.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: italic;
+  font-weight: 900;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70kjywflP6FLr3gZx7K8UyEVQnyR1E7VN-f51xYuGCQepOvB0KLc2v0wKKB0Q4MSZxyqf2CgAchbBh2_1c04a09d.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: normal;
+  font-weight: 100;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70mjywflP6FLr3gZx7K8UyuXDs9zVwDmXCb8lxYgmuii32UGoVldX6UgfjL4-3sMM_kB_qXSEX5KSh0_957728d4.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: normal;
+  font-weight: 200;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70mjywflP6FLr3gZx7K8UyuXDs9zVwDmXCb8lxYgmuii32UGoVldX6UgfjL4-3sMM_kB_qXSEX5KSh0_957728d4.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: normal;
+  font-weight: 300;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70mjywflP6FLr3gZx7K8UyuXDs9zVwDmXCb8lxYgmuii32UGoVldX6UgfjL4-3sMM_kB_qXSEX5KSh0_957728d4.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70mjywflP6FLr3gZx7K8UyuXDs9zVwDmXCb8lxYgmuii32UGoVldX6UgfjL4-3sMM_kB_qXSEX5KSh0_957728d4.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70mjywflP6FLr3gZx7K8UyuXDs9zVwDmXCb8lxYgmuii32UGoVldX6UgfjL4-3sMM_kB_qXSEX5KSh0_957728d4.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70mjywflP6FLr3gZx7K8UyuXDs9zVwDmXCb8lxYgmuii32UGoVldX6UgfjL4-3sMM_kB_qXSEX5KSh0_957728d4.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70mjywflP6FLr3gZx7K8UyuXDs9zVwDmXCb8lxYgmuii32UGoVldX6UgfjL4-3sMM_kB_qXSEX5KSh0_957728d4.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: normal;
+  font-weight: 800;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70mjywflP6FLr3gZx7K8UyuXDs9zVwDmXCb8lxYgmuii32UGoVldX6UgfjL4-3sMM_kB_qXSEX5KSh0_957728d4.woff2") format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-style: normal;
+  font-weight: 900;
+  font-stretch: 100%;
+  src: url("/assets/fonts/R70mjywflP6FLr3gZx7K8UyuXDs9zVwDmXCb8lxYgmuii32UGoVldX6UgfjL4-3sMM_kB_qXSEX5KSh0_957728d4.woff2") format('woff2');
+}

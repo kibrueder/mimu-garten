@@ -1,9 +1,27 @@
-# Clean URL helpers
-/uberdachung              /uberdachung/              301
-/wintergarten             /wintergarten/             301
-/contact                  /contact/                  301
-/nl                       /nl/                       301
-
-# Configurator stays on Hostinger (external). If this site is deployed on the
-# same Hostinger account beside /configurator/, remove the next line.
-# /configurator/*  https://mimugarten.nl/configurator/:splat  200!
+/contact  /contact/  301
+/cookie-policy-eu  /cookie-policy-eu/  301
+/danke  /danke/  301
+/glasschiebewande  /glasschiebewande/  301
+/montage-und-service  /montage-und-service/  301
+/nl  /nl/  301
+/pergamon-aluminium-terrassenuberdachung  /pergamon-aluminium-terrassenuberdachung/  301
+/showroom-roermond  /showroom-roermond/  301
+/sonnenschutz-fur-terrassenuberdachungen  /sonnenschutz-fur-terrassenuberdachungen/  301
+/terrassenueberdachung  /terrassenueberdachung/  301
+/uberdachung  /uberdachung/  301
+/unsere-produkte  /unsere-produkte/  301
+/wintergarten  /wintergarten/  301
+/nl/contact  /nl/contact/  301
+/nl/cookiebeleid-eu  /nl/cookiebeleid-eu/  301
+/nl/dank-u  /nl/dank-u/  301
+/nl/glazen-schuifwanden  /nl/glazen-schuifwanden/  301
+/nl/montage-en-service  /nl/montage-en-service/  301
+/nl/onze-producten  /nl/onze-producten/  301
+/nl/overkapping  /nl/overkapping/  301
+/nl/pergamon-aluminium-terrasoverkapping  /nl/pergamon-aluminium-terrasoverkapping/  301
+/nl/serre  /nl/serre/  301
+/nl/showroom-roermond  /nl/showroom-roermond/  301
+/nl/terrassenueberdachung  /nl/terrassenueberdachung/  301
+/nl/zonwering-voor-terrasoverkappingen  /nl/zonwering-voor-terrasoverkappingen/  301
+/nl/terrasoverkapping  /nl/terrassenueberdachung/  301
+/nl/terrasoverkapping/  /nl/terrassenueberdachung/  301
